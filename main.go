@@ -27,6 +27,7 @@ func main() {
 	// fmt.Printf("after setzero: %#v\n", m)
 
 	// fmt.Printf("filtered res: %#v\n", filter[int]([]int{10, 20, 40, 50, 15, 80, 100, 4}, func(a, k int) bool { return a >= 50 }))
-	fmt.Printf("Letter combinations: %#v\n", letterCombinations("23"))
-	fmt.Printf("Letter combinations: %#v\n", letterCombinations("2389"))
+	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("23"))
+	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("2389"))
+	fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{2, -1, 1, 2, 2}))
 }
