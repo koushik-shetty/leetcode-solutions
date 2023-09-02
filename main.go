@@ -30,4 +30,5 @@ func main() {
 	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("23"))
 	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("2389"))
 	fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{2, -1, 1, 2, 2}))
+	fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{-1, -2, -3, -4, -5, 6}))
 }

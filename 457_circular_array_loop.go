@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 func circularArrayLoop(nums []int) bool {
 	visited := make(map[int]bool)
@@ -16,7 +18,7 @@ func circularArrayLoop(nums []int) bool {
 				isHetro = true
 			}
 			prevLoc = nextLoc
-			nextLoc := (nextLoc + nums[nextLoc]) % len(nums)
+			nextLoc = (nextLoc + nums[nextLoc]) % len(nums)
 			if nextLoc < 0 {
 				//since next is neg, add to the length for sub
 				nextLoc = len(nums) + nextLoc
