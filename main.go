@@ -29,6 +29,11 @@ func main() {
 	// fmt.Printf("filtered res: %#v\n", filter[int]([]int{10, 20, 40, 50, 15, 80, 100, 4}, func(a, k int) bool { return a >= 50 }))
 	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("23"))
 	// fmt.Printf("Letter combinations: %#v\n", letterCombinations("2389"))
-	fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{2, -1, 1, 2, 2}))
-	fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{-1, -2, -3, -4, -5, 6}))
+	// fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{2, -1, 1, 2, 2}))
+	// fmt.Printf("isValidLoop: %#v\n", circularArrayLoop([]int{-1, -2, -3, -4, -5, 6}))
+	fmt.Printf("unsorted: %#v\n", findUnsortedSubarray([]int{2, 6, 4, 8, 10, 9, 15}))
+	fmt.Printf("unsorted: %#v\n", findUnsortedSubarray([]int{1, 2, 3, 4}))
+	fmt.Printf("unsorted: %#v\n", findUnsortedSubarray([]int{1}))
+	fmt.Printf("unsorted: %#v\n", findUnsortedSubarray([]int{4, 3, 2, 1}))
+	fmt.Printf("unsorted: %#v\n", findUnsortedSubarray([]int{1, 3, 2, 2, 2}))
 }
