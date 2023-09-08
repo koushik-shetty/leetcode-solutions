@@ -1,0 +1,1 @@
+function shortestUniquePrefix(words) { }
