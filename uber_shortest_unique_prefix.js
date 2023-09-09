@@ -53,4 +53,6 @@ function buildTrie(trie, word) {
     return trie;
 }
 
-function walkTrie(trie) { }
+function walkTrie(trie) {
+
+}
