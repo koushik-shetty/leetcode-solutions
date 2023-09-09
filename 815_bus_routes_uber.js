@@ -62,6 +62,7 @@ function createGraph(routes) {
     })
     return connectedBuses;
 }
+
 function getDistance(graph, srcBus, trg, routes = []) {
     let distance = 0;
     let found = false;

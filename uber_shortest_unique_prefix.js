@@ -1,5 +1,4 @@
-function Node(word, char, children = []) {
-    this.word = word;
+function Node(char, children = []) {
     this.char = char;
     this.children = children;
 }
@@ -10,18 +9,18 @@ function shortestUniquePrefix(words) {
     let tries = {};
     words.forEach(word => {
         let char = word[0];
-        tries[char] = buildTrie(tries[char] || new Node(word, char), word);
+        tries[char] = buildTrie(tries[char] || new Node(char), word);
     })
-    console.log(tries, "-------")
     //iterate through each trie
-    //for each go through the path of the trie
-    //at split add the chars till now to the prefix
-    //when leaf is hit return the prefix
+    let out = [];
+    Object.values(tries).forEach(trie => {
+        out.push(walkTrie(trie))
+    })
+    return [].concat(...out.map(o => {
+        return Object.keys(o).map(w => ({ [w]: o[w] }))
+    }))
 
 }
-shortestUniquePrefix(["world"]);
-let b = buildTrie(new Node("wonder", "w"), "wonder")
-// console.log(print(buildTrie(b, "world")))
 
 function print(trie) {
     let out = [];
@@ -45,7 +44,7 @@ function buildTrie(trie, word) {
         let children = currNode.children;
         let matchNode = children.find(child => child.char == word[i]);
         if (!matchNode) {
-            matchNode = new Node(word, word[i]);
+            matchNode = new Node(word[i]);
             children.push(matchNode)
         }
         currNode = matchNode
@@ -54,5 +53,39 @@ function buildTrie(trie, word) {
 }
 
 function walkTrie(trie) {
-
+    let q = [{ word: trie.char, pref: "", node: trie }];
+    let out = {};
+    while (q.length != 0) {
+        let qn = q.length;
+        for (let i = qn - 1; i >= 0; i--) {
+            let ele = q[i];
+            // console.log("ele: ", ele)
+            if (ele.node.children.length === 0) {
+                //end DFS
+                out[ele.word] = ele.pref || trie.char;
+            } else if (ele.node.children.length > 1) {
+                //with multiple children, the prefix here could be the shortest, so we append the child char and pass on.
+                q.push(...ele.node.children.map(c => {
+                    return {
+                        word: ele.word + c.char,
+                        pref: ele.word + c.char,
+                        node: c
+                    }
+                }))
+            } else if (ele.node.children.length == 1) {
+                //if single child then carry over the prefixes
+                q.push(...ele.node.children.map(c => {
+                    return {
+                        word: ele.word + c.char,
+                        pref: ele.pref,
+                        node: c
+                    }
+                }))
+            }
+        }
+        q.splice(0, qn)
+    }
+    return out
 }
+
+console.log("short: ", shortestUniquePrefix(["world", "Uber", "Train", "Trap", "Trip", "Universe"]));
