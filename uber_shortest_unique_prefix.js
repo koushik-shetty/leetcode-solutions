@@ -11,20 +11,17 @@ function shortestUniquePrefix(words) {
     words.forEach(word => {
         let char = word[0];
         tries[char] = buildTrie(tries[char] || new Node(word, char), word);
-        console.log(tries, "-------")
-        for (let i = 0; i < word.length; i++) {
-
-        }
     })
+    console.log(tries, "-------")
     //iterate through each trie
     //for each go through the path of the trie
     //at split add the chars till now to the prefix
     //when leaf is hit return the prefix
 
 }
-//shortestUniquePrefix(["world"]);
+shortestUniquePrefix(["world"]);
 let b = buildTrie(new Node("wonder", "w"), "wonder")
-console.log(print(buildTrie(b, "world")))
+// console.log(print(buildTrie(b, "world")))
 
 function print(trie) {
     let out = [];
