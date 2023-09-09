@@ -89,3 +89,4 @@ function walkTrie(trie) {
 }
 
 console.log("short: ", shortestUniquePrefix(["world", "Uber", "Train", "Trap", "Trip", "Universe"]));
+console.log("short: ", shortestUniquePrefix(["world", "winter", "wander", "well", "winner", "wiser"]));
