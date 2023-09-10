@@ -27,13 +27,13 @@ Explanation: The best strategy is take the first bus to the bus stop 7, then tak
     // we need a graph and find the shortest b/w src & dst
 
     //first get all the buses which have the soruce
-    let srcBuses = routes.map((bus, i) => bus.includes(src) && i).filter(x => x);
+    let srcBuses = routes.map((bus, i) => bus.includes(src) ? i : undefined).filter(x => !isNaN(x));
     //create the graph
     let connectedBuses = createGraph(routes)
 
     //for each filtered bus do bfs and get the distance to the target
     let distances = []
-    for (let i = 0; i < srcBuses.lenght; i++) {
+    for (let i = 0; i < srcBuses.length; i++) {
         distances.push(getDistance(connectedBuses, srcBuses[i], trg, routes));
     }
     console.log(srcBuses)
@@ -50,8 +50,8 @@ Explanation: The best strategy is take the first bus to the bus stop 7, then tak
 function createGraph(routes) {
     // bus0: [b1, b2]
     let connectedBuses = {};
-    routes.forEach((bus = [], j) => {
-        bus.forEach(stop => {
+    routes.forEach((stops = [], j) => {
+        stops.forEach(stop => {
             return routes.forEach((buses, i) => {
                 if (buses.includes(stop) && i != j) {
                     connectedBuses[j] = (connectedBuses[j] || []);
@@ -59,6 +59,7 @@ function createGraph(routes) {
                 }
             })
         });
+        connectedBuses[j] = [...(new Set(connectedBuses[j]))]
     })
     return connectedBuses;
 }
@@ -71,7 +72,7 @@ function getDistance(graph, srcBus, trg, routes = []) {
         let qlen = q.length;
         for (let i = 0; i < qlen; i++) {
             let bus = q[i];
-            if (routes[bus].includes(tar)) {
+            if (routes[bus].includes(trg)) {
                 found = true;
                 distance++;
                 q = [];
@@ -84,9 +85,9 @@ function getDistance(graph, srcBus, trg, routes = []) {
             return distance;
         }
         //[b2,b3]
-        q.splice(0, qn);
+        q.splice(0, qlen);
     }
     return -1;
 }
 
-
+console.log(numBusesToDestination([[1, 2, 7], [3, 5, 7], [3, 6, 8]], 1, 6))
